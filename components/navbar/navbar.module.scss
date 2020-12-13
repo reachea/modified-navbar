@@ -1,0 +1,33 @@
+$main: rgb(255, 255, 255);
+$secondary: rgb(245, 245, 245);
+
+$navbarActive: rgb(23, 23, 23);
+
+$btnMain: rgb(225, 0, 0);
+
+$navInactive: rgb(186, 186, 186);
+
+.navbarContainer {
+  width: 100%;
+  height: 60px;
+  background-color: $secondary;
+}
+
+.navbarNavContainer {
+  width: 100%;
+  height: 60px;
+  padding: 0px !important;
+}
+
+.navbarNav {
+  height: 60px;
+  padding: 0px 12px !important;
+  display: flex;
+  align-items: center;
+}
+
+.navbarNavText {
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin: 0px;
+}

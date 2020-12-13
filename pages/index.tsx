@@ -3,7 +3,9 @@ import React from "react";
 const App: React.FC<any> = (): any => {
   return (
     <>
-      <p>Hello there!</p>
+      <div style={{ width: "100%", height: "100vh" }}>
+        <p>This is me</p>
+      </div>
     </>
   );
 };
