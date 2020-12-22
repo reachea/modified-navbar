@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import style from "./subnavbar.module.scss";
 import styled from "styled-components";
 
-import { Navigation } from "./Navigation";
+import { Navigation } from "./navigation";
 
 import { Navbar, Nav, NavLink, NavDropdown } from "react-bootstrap";
 
