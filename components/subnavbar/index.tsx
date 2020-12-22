@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import style from "./subnavbar.module.scss";
 import styled from "styled-components";
 
-import { Container, Navbar, Nav, NavLink, NavDropdown } from "react-bootstrap";
+import { Navigation } from "./Navigation";
+
+import { Navbar, Nav, NavLink, NavDropdown } from "react-bootstrap";
 
 const SubNavbarContainer = styled(Navbar)`
   background-color: transparent !important;
@@ -21,13 +23,21 @@ const NavDropDown = styled(NavDropdown)`
 
   &.active {
     border-bottom: 1px solid rgb(225, 0, 0) !important;
-    a {
+    #basic-nav-dropdown {
       color: rgb(225, 0, 0) !important;
     }
   }
 `;
 
-export const SubNavBar: React.FC<any> = (): any => {
+interface SubNavBarProp {
+  classNameProp: string;
+  showNav: boolean;
+}
+
+export const SubNavBar: React.FC<SubNavBarProp> = ({
+  classNameProp,
+  showNav,
+}): any => {
   const [selectedKey, setSelectedKey] = useState("");
 
   const dropDownOne = ["5", "6", "7", "8"];
@@ -38,11 +48,13 @@ export const SubNavBar: React.FC<any> = (): any => {
   };
 
   return (
-    <div className={style.subNavbarContainer}>
+    <div className={`${style.subNavbarContainer} ${classNameProp}`}>
       <SubNavbarContainer
         bg="light"
         variant="light"
-        className={style.subNavbarNavContainer}
+        className={`${style.subNavbarNavContainer} ${
+          showNav ? "dontShowNav" : "showNav"
+        } }`}
       >
         <Nav
           className="mr-auto"
@@ -122,6 +134,11 @@ export const SubNavBar: React.FC<any> = (): any => {
           </NavDropDown>
         </Nav>
       </SubNavbarContainer>
+
+      <Navigation
+        classNameProp={classNameProp}
+        showNav={`${showNav ? "showNav" : "dontShowNav"}`}
+      />
     </div>
   );
 };

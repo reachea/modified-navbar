@@ -13,9 +13,13 @@ const NavbarContainer = styled(Navbar)`
   }
 `;
 
-export const NavBar: React.FC<any> = (): any => {
+interface NavBarProps {
+  classNameProp: string;
+}
+
+export const NavBar: React.FC<NavBarProps> = ({ classNameProp }): any => {
   return (
-    <div className={style.navbarContainer}>
+    <div className={`${style.navbarContainer} ${classNameProp}`}>
       <NavbarContainer
         expand="sm"
         bg="light"
@@ -23,9 +27,17 @@ export const NavBar: React.FC<any> = (): any => {
         className={style.navbarNavContainer}
         collapseOnSelect
       >
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-        <Navbar.Collapse id="responsive-navbar-nav">
+        <Navbar.Toggle
+          aria-controls="responsive-navbar-nav"
+          className={style.navHamburgerBtn}
+        />
+        <Navbar.Brand href="#home" className={style.brandLogo}>
+          Navbar
+        </Navbar.Brand>
+        <Navbar.Collapse
+          id="responsive-navbar-nav"
+          className={style.navCollapse}
+        >
           <Nav className="mr-auto">
             <NavLink href="#news" className={style.navbarNav}>
               <p className={style.navbarNavText}>NEWS</p>
