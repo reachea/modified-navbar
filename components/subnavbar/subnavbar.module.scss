@@ -18,6 +18,7 @@ $navInactive: rgb(186, 186, 186);
   height: 60px;
   background-color: $main;
   border-bottom: 1px solid $borderLineColor;
+  z-index: 100;
 }
 
 .subNavbarNavContainer {
