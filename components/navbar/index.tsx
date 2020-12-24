@@ -2,7 +2,7 @@ import React from "react";
 import style from "./navbar.module.scss";
 import styled from "styled-components";
 
-import { Navbar, Nav, NavLink, Container } from "react-bootstrap";
+import { Navbar, Nav, NavLink } from "react-bootstrap";
 
 const NavbarContainer = styled(Navbar)`
   background-color: transparent !important;

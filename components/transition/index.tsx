@@ -11,7 +11,6 @@ export class NavContainer extends React.Component<NavContainerProps> {
   state: {
     scroll: 0;
     isShow: true;
-    showNav: false;
   };
 
   constructor(props: any) {
@@ -19,7 +18,6 @@ export class NavContainer extends React.Component<NavContainerProps> {
     this.state = {
       scroll: 0,
       isShow: true,
-      showNav: false,
     };
 
     this.scrollEffect = this.scrollEffect.bind(this);
@@ -39,31 +37,11 @@ export class NavContainer extends React.Component<NavContainerProps> {
         scroll: window.scrollY,
         isShow: false,
       });
-
-      if (window.scrollY > 6000) {
-        this.setState({
-          showNav: true,
-        });
-      } else if (window.scrollY < 6000) {
-        this.setState({
-          showNav: false,
-        });
-      }
     } else if (window.scrollY - this.state.scroll < 0) {
       this.setState({
         scroll: window.scrollY,
         isShow: true,
       });
-
-      if (window.scrollY > 6000) {
-        this.setState({
-          showNav: true,
-        });
-      } else if (window.scrollY < 6000) {
-        this.setState({
-          showNav: false,
-        });
-      }
     }
   }
 
@@ -72,10 +50,7 @@ export class NavContainer extends React.Component<NavContainerProps> {
       <>
         <Transition>
           <NavBar classNameProp={`${this.state.isShow ? "show" : "hidden"}`} />
-          <SubNavBar
-            classNameProp={`${this.state.isShow ? "down" : "top"}`}
-            showNav={this.state.showNav}
-          />
+          <SubNavBar classNameProp={`${this.state.isShow ? "down" : "top"}`} />
         </Transition>
       </>
     );

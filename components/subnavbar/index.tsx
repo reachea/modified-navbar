@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import style from "./subnavbar.module.scss";
 import styled from "styled-components";
+
+import { ScrollContext } from "../../contexts/scroll";
 
 import { Navigation } from "./navigation";
 
@@ -31,13 +33,9 @@ const NavDropDown = styled(NavDropdown)`
 
 interface SubNavBarProp {
   classNameProp: string;
-  showNav: boolean;
 }
 
-export const SubNavBar: React.FC<SubNavBarProp> = ({
-  classNameProp,
-  showNav,
-}): any => {
+export const SubNavBar: React.FC<SubNavBarProp> = ({ classNameProp }): any => {
   const [selectedKey, setSelectedKey] = useState("");
 
   const dropDownOne = ["5", "6", "7", "8"];
@@ -47,13 +45,18 @@ export const SubNavBar: React.FC<SubNavBarProp> = ({
     setSelectedKey(eventKey);
   };
 
+  //context
+  const scrollContext = useContext(ScrollContext);
+
+  //state
+
   return (
     <div className={`${style.subNavbarContainer} ${classNameProp}`}>
       <SubNavbarContainer
         bg="light"
         variant="light"
         className={`${style.subNavbarNavContainer} ${
-          showNav ? "dontShowNav" : "showNav"
+          scrollContext.viewOne ? "showNav" : "dontShowNav"
         } }`}
       >
         <Nav
@@ -137,7 +140,7 @@ export const SubNavBar: React.FC<SubNavBarProp> = ({
 
       <Navigation
         classNameProp={classNameProp}
-        showNav={`${showNav ? "showNav" : "dontShowNav"}`}
+        showNav={`${scrollContext.viewTwo ? "showNav" : "dontShowNav"}`}
       />
     </div>
   );
