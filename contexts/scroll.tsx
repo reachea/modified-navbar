@@ -7,7 +7,7 @@ interface ScrollContextProps {
   setViewTwo: (e: any) => void;
 }
 
-export const ScrollContext = React.createContext<ScrollOneContextProps>({
+export const ScrollContext = React.createContext<ScrollContextProps>({
   viewOne: null,
   setViewOne: (e) => {},
   viewTwo: null,
