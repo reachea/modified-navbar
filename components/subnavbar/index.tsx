@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { ScrollContext } from "../../contexts/scroll";
 
-import { Navigation } from "./navigation";
+import { Navigation } from "./Navigation";
 
 import { Navbar, Nav, NavLink, NavDropdown } from "react-bootstrap";
 
