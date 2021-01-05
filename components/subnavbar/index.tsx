@@ -140,7 +140,7 @@ export const SubNavBar: React.FC<SubNavBarProp> = ({ classNameProp }): any => {
 
       <Navigation
         classNameProp={classNameProp}
-        showNav={`${scrollContext.viewTwo ? "showNav" : "dontShowNav"}`}
+        showNav={`${scrollContext.viewOne ? "dontShowNav" : "showNav"}`}
       />
     </div>
   );

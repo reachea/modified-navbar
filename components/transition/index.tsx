@@ -46,8 +46,6 @@ export class NavContainer extends React.Component<NavContainerProps> {
   }
 
   render() {
-    console.log(this.state.scroll);
-    
     return (
       <>
         <Transition>
