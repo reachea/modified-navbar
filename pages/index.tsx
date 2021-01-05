@@ -203,7 +203,9 @@ const App: React.FC<any> = (): any => {
 
   return (
     <>
-      <BodyContainer ref={element}>
+      <BodyContainer>
+        <SwitchNav ref={element}></SwitchNav>
+
         {arr.map((x, i) => {
           return (
             <Card key={i} style={{ width: "18rem" }}>
@@ -223,9 +225,14 @@ const App: React.FC<any> = (): any => {
   );
 };
 
+const SwitchNav = styled.div`
+  height: 200vh;
+  position: absolute;
+  top: 0px;
+`;
+
 const BodyContainer = styled(Container)`
   margin-top: 120px;
-  height: 100vh;
 `;
 
 export default App;
