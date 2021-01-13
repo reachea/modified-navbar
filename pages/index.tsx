@@ -1,238 +1,56 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { ScrollContext } from "../contexts/scroll";
 import styled from "styled-components";
-import { Button, Card, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
-const App: React.FC<any> = (): any => {
-  const arr = [
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-  ];
+import { Layout } from "../components/layout";
+import { useQuery } from "@apollo/client";
+import { ArticleDetectContext } from "../components/ArticleDetectController";
+import ArticleDetect from "../components/ArticleDetect";
+import Article from "../components/Article";
+import { CHARACTERS_QUERY } from "../lib/graph";
+
+function ArticleBody() {
+  const { data, loading } = useQuery(CHARACTERS_QUERY);
   const [element, view] = useInView();
-
   const scrollOneContext = useContext(ScrollContext);
+  const { title } = useContext(ArticleDetectContext);
 
   useEffect(() => {
     scrollOneContext.setViewOne(view);
   }, [view]);
 
+  if (loading) return <div>Loading...</div>;
+
   return (
     <>
-      <BodyContainer>
-        <SwitchNav ref={element}></SwitchNav>
+      <div ref={element}></div>
+      {data.characters.results.map((x) => {
+        return (
+          <ArticleDetect value={x.name}>
+            <Article title={x.name} image={x.image} />
+          </ArticleDetect>
+        );
+      })}
+    </>
+  );
+}
 
-        {arr.map((x, i) => {
-          return (
-            <Card key={i} style={{ width: "18rem" }}>
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          );
-        })}
-      </BodyContainer>
+const App: React.FC<any> = (): any => {
+  return (
+    <>
+      <Layout>
+        <BodyContainer id="container">
+          <ArticleBody />
+        </BodyContainer>
+      </Layout>
     </>
   );
 };
 
-const SwitchNav = styled.div`
-  height: 200vh;
-  position: absolute;
-  top: 0px;
-`;
-
 const BodyContainer = styled(Container)`
-  margin-top: 120px;
+  margin-top: 150px;
 `;
 
 export default App;
