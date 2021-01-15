@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import style from "./subnavbar.module.scss";
 import styled from "styled-components";
 
@@ -10,6 +10,7 @@ import {
   faGooglePlusSquare,
   faYoutubeSquare,
 } from "@fortawesome/free-brands-svg-icons";
+import { ArticleDetectContext } from "../ArticleDetectController";
 
 const NavigationContainer = styled(Navbar)`
   background-color: transparent !important;
@@ -33,6 +34,8 @@ export const Navigation: React.FC<SubNavBarProp> = ({
   classNameProp,
   showNav,
 }): any => {
+  const { title, id } = useContext(ArticleDetectContext);
+
   return (
     <div className={`${style.subNavbarContainer} ${classNameProp} ${showNav}`}>
       <NavigationContainer
@@ -40,9 +43,12 @@ export const Navigation: React.FC<SubNavBarProp> = ({
         variant="light"
         className={`${style.subNavbarNavContainer}`}
       >
-        <FontAwesomeIcon icon={faFacebookSquare} size="2x"></FontAwesomeIcon>
+        {/* <FontAwesomeIcon icon={faFacebookSquare} size="2x"></FontAwesomeIcon>
         <FontAwesomeIcon icon={faGooglePlusSquare} size="2x"></FontAwesomeIcon>
-        <FontAwesomeIcon icon={faYoutubeSquare} size="2x"></FontAwesomeIcon>
+        
+        <FontAwesomeIcon icon={faYoutubeSquare} size="2x"></FontAwesomeIcon> */}
+        <div>{title} {id}</div>
+
       </NavigationContainer>
     </div>
   );

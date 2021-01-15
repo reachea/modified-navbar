@@ -15,7 +15,6 @@ function ArticleBody() {
   const { data, loading } = useQuery(CHARACTERS_QUERY);
   const [element, view] = useInView();
   const scrollOneContext = useContext(ScrollContext);
-  const { title } = useContext(ArticleDetectContext);
 
   useEffect(() => {
     scrollOneContext.setViewOne(view);
@@ -28,8 +27,8 @@ function ArticleBody() {
       <div ref={element}></div>
       {data.characters.results.map((x) => {
         return (
-          <ArticleDetect value={x.name}>
-            <Article title={x.name} image={x.image} />
+          <ArticleDetect title={x.name} id={x.id}>
+            <Article title={x.name} image={x.image} id={x.id} />
           </ArticleDetect>
         );
       })}

@@ -5,9 +5,10 @@ import styled from "styled-components";
 import { NavBar } from "../navbar";
 import { SubNavBar } from "../subnavbar";
 
-interface NavContainerProps {}
+interface NavContainerProps { }
 
 export class NavContainer extends React.Component<NavContainerProps> {
+  scroll = 0;
   state: {
     scroll: 0;
     isShow: true;
@@ -32,15 +33,15 @@ export class NavContainer extends React.Component<NavContainerProps> {
   }
 
   scrollEffect() {
-    if (window.scrollY - this.state.scroll > 0) {
+    const shouldShow = document.body.getBoundingClientRect().top > this.scroll;
+    this.scroll = document.body.getBoundingClientRect().top;
+    if (window.scrollY - this.scroll > 0) {
       this.setState({
-        scroll: window.scrollY,
-        isShow: false,
+        isShow: shouldShow,
       });
-    } else if (window.scrollY - this.state.scroll < 0) {
+    } else if (window.scrollY - this.scroll < 0) {
       this.setState({
-        scroll: window.scrollY,
-        isShow: true,
+        isShow: shouldShow,
       });
     }
   }

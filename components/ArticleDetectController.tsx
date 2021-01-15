@@ -1,10 +1,12 @@
 import React, { PropsWithChildren, useCallback, useContext, useState } from "react";
 
 export const ArticleDetectContext = React.createContext<{
+  id: string,
   title: string,
-  setIntersect: (id: number, intersect: boolean) => void,
-  register: (value: string) => number,
+  setIntersect: (title: number, intersect: boolean) => void,
+  register: (title: string, id: string) => number,
 }>({
+  id: '',
   title: "",
   setIntersect: () => { },
   register: () => 0
@@ -12,34 +14,35 @@ export const ArticleDetectContext = React.createContext<{
 
 interface Props extends PropsWithChildren<unknown> { }
 
-export function useDetectedTitle() {
-  const ctx = useContext(ArticleDetectContext);
-  return ctx.title || '';
-}
-
 export function ArticleDetectController(props: Props) {
   const [registerArticle] = useState([]);
   const [title, setTitle] = useState("");
-
-  const register = useCallback((value: string) => {
+  const [id, setId] = useState('')
+  const register = useCallback((title: string, id: string) => {
     registerArticle.push({
-      value,
+      id,
+      title,
       intersect: false,
     });
     return registerArticle.length - 1;
   }, [registerArticle])
 
-  const setIntersect = useCallback((id: number, intersect: boolean) => {
-    registerArticle[id].intersect = intersect;
-    let newTitle = '';
+
+  const setIntersect = useCallback((data: number, intersect: boolean) => {
+    registerArticle[data].intersect = intersect;
+
+    let { newTitle, newId }: any = '';
+
     for (let i = 0; i < registerArticle.length; i++) {
       if (registerArticle[i].intersect) {
-        newTitle = registerArticle[i].value;
+        newTitle = registerArticle[i].title;
+        newId = registerArticle[i].id
       }
     }
 
     setTitle(newTitle);
+    setId(newId)
   }, [registerArticle])
 
-  return <ArticleDetectContext.Provider value={{ title, setIntersect, register }}>{props.children}</ArticleDetectContext.Provider>
+  return <ArticleDetectContext.Provider value={{ id, title, setIntersect, register }}>{props.children}</ArticleDetectContext.Provider>
 }

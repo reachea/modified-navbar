@@ -55,9 +55,8 @@ export const SubNavBar: React.FC<SubNavBarProp> = ({ classNameProp }): any => {
       <SubNavbarContainer
         bg="light"
         variant="light"
-        className={`${style.subNavbarNavContainer} ${
-          scrollContext.viewOne ? "showNav" : "dontShowNav"
-        } }`}
+        className={`${style.subNavbarNavContainer} ${scrollContext.viewOne ? "showNav" : "dontShowNav"
+          } }`}
       >
         <Nav
           className="mr-auto"
@@ -80,61 +79,6 @@ export const SubNavBar: React.FC<SubNavBarProp> = ({ classNameProp }): any => {
             <p className={style.subNavbarNavText}>NEWSLETTERS</p>
           </NavLink>
 
-          <NavDropDown
-            title="CATEGORIES"
-            id="basic-nav-dropdown"
-            className={`${style.subNavbarNavDropdown} ${
-              dropDownOne.filter(
-                (selectKey) => selectKey === selectedKey
-              )[0] === selectedKey
-                ? "active"
-                : ""
-            }`}
-          >
-            <NavDropdown.Item eventKey="5" href="#sample/1">
-              sample 1
-            </NavDropdown.Item>
-
-            <NavDropdown.Item eventKey="6" href="#sample/2">
-              sample 2
-            </NavDropdown.Item>
-
-            <NavDropdown.Item eventKey="7" href="#sample/3">
-              sample 3
-            </NavDropdown.Item>
-
-            <NavDropdown.Item eventKey="8" href="#sample/4">
-              sample 4
-            </NavDropdown.Item>
-          </NavDropDown>
-
-          <NavDropDown
-            title="MARKETS"
-            id="basic-nav-dropdown"
-            className={`${style.subNavbarNavDropdown} ${
-              dropDownTwo.filter(
-                (selectKey) => selectKey === selectedKey
-              )[0] === selectedKey
-                ? "active"
-                : ""
-            } `}
-          >
-            <NavDropdown.Item eventKey="9" href="#sample/5">
-              sample 5
-            </NavDropdown.Item>
-
-            <NavDropdown.Item eventKey="10" href="#sample/6">
-              sample 6
-            </NavDropdown.Item>
-
-            <NavDropdown.Item eventKey="11" href="#sample/7">
-              sample 7
-            </NavDropdown.Item>
-
-            <NavDropdown.Item eventKey="12" href="#sample/8">
-              sample 8
-            </NavDropdown.Item>
-          </NavDropDown>
         </Nav>
       </SubNavbarContainer>
 

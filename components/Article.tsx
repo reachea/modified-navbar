@@ -1,11 +1,10 @@
 interface Props {
+  id: string;
   title: string;
   image: string;
 }
 
-export default function Article({ title, image }: Props) {
-  console.log(title);
-
+export default function Article({ id, title, image }: Props) {
   return (<div className="container">
 
     <div className="row justify-content-center">
