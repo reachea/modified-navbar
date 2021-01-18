@@ -32,31 +32,24 @@ const NavDropDown = styled(NavDropdown)`
 `;
 
 interface SubNavBarProp {
-  classNameProp: string;
+  transition: string;
 }
 
-export const SubNavBar: React.FC<SubNavBarProp> = ({ classNameProp }): any => {
+export const SubNavBar: React.FC<SubNavBarProp> = ({ transition }): any => {
   const [selectedKey, setSelectedKey] = useState("");
-
-  const dropDownOne = ["5", "6", "7", "8"];
-  const dropDownTwo = ["9", "10", "11", "12"];
 
   const handleSelect = (eventKey: string) => {
     setSelectedKey(eventKey);
   };
 
-  //context
-  const scrollContext = useContext(ScrollContext);
-
-  //state
-
   return (
-    <div className={`${style.subNavbarContainer} ${classNameProp}`}>
+    <div className={`${style.subNavbarContainer} ${transition}`}>
       <SubNavbarContainer
         bg="light"
         variant="light"
-        className={`${style.subNavbarNavContainer} ${scrollContext.viewOne ? "showNav" : "dontShowNav"
-          } }`}
+        className={`${style.subNavbarNavContainer} ${
+          transition === "down" ? "showNav" : "dontShowNav"
+        } }`}
       >
         <Nav
           className="mr-auto"
@@ -78,13 +71,12 @@ export const SubNavBar: React.FC<SubNavBarProp> = ({ classNameProp }): any => {
           <NavLink eventKey="4" href="#events" className={style.subNavbarNav}>
             <p className={style.subNavbarNavText}>NEWSLETTERS</p>
           </NavLink>
-
         </Nav>
       </SubNavbarContainer>
 
       <Navigation
-        classNameProp={classNameProp}
-        showNav={`${scrollContext.viewOne ? "dontShowNav" : "showNav"}`}
+        classNameProp={transition}
+        showNav={`${transition === "down" ? "dontShowNav" : "showNav"}`}
       />
     </div>
   );

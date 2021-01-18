@@ -3,20 +3,18 @@ import { useIntersection } from "../hook/useIntersection";
 import { ArticleDetectContext } from "./ArticleDetectController";
 
 interface Props extends React.PropsWithChildren<unknown> {
-  id: string
-  title: string
+  id: string;
+  title: string;
 }
-
-
 
 export default function ArticleDetect(props: Props) {
   const { setIntersect, register } = useContext(ArticleDetectContext);
   const { isIntersecting, elRef } = useIntersection(props);
-  const data = useMemo(() => register(props.title, props.id), [register])
+  const data = useMemo(() => register(props.title, props.id), [register]);
 
   useEffect(() => {
     setIntersect(data, isIntersecting);
-  }, [data, isIntersecting, props])
+  }, [data, isIntersecting, props]);
 
-  return <div ref={elRef}>{props.children}</div>
+  return <div ref={elRef}>{props.children}</div>;
 }

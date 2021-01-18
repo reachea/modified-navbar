@@ -13,18 +13,11 @@ import { CHARACTERS_QUERY } from "../lib/graph";
 
 function ArticleBody() {
   const { data, loading } = useQuery(CHARACTERS_QUERY);
-  const [element, view] = useInView();
-  const scrollOneContext = useContext(ScrollContext);
-
-  useEffect(() => {
-    scrollOneContext.setViewOne(view);
-  }, [view]);
 
   if (loading) return <div>Loading...</div>;
 
   return (
     <>
-      <div ref={element}></div>
       {data.characters.results.map((x) => {
         return (
           <ArticleDetect title={x.name} id={x.id}>

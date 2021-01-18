@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { NavBar } from "../navbar";
 import { SubNavBar } from "../subnavbar";
 
-interface NavContainerProps { }
+interface NavContainerProps {}
 
 export class NavContainer extends React.Component<NavContainerProps> {
   scroll = 0;
@@ -51,7 +51,7 @@ export class NavContainer extends React.Component<NavContainerProps> {
       <>
         <Transition>
           <NavBar classNameProp={`${this.state.isShow ? "show" : "hidden"}`} />
-          <SubNavBar classNameProp={`${this.state.isShow ? "down" : "top"}`} />
+          <SubNavBar transition={`${this.state.isShow ? "down" : "top"}`} />
         </Transition>
       </>
     );
@@ -78,9 +78,12 @@ const Transition = styled.div`
   }
   .showNav {
     transition: all 200ms ease-in;
+    visibility: visible;
+    z-index: 10;
   }
   .dontShowNav {
     transition: all 200ms ease-out;
-    display: none;
+    visibility: hidden;
+    z-index: 9;
   }
 `;
