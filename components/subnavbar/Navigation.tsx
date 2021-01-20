@@ -47,8 +47,9 @@ export const Navigation: React.FC<SubNavBarProp> = ({
         <FontAwesomeIcon icon={faGooglePlusSquare} size="2x"></FontAwesomeIcon>
         
         <FontAwesomeIcon icon={faYoutubeSquare} size="2x"></FontAwesomeIcon> */}
-        <div>{title} {id}</div>
-
+        <div>
+          {title} {id}
+        </div>
       </NavigationContainer>
     </div>
   );

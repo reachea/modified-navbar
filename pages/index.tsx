@@ -4,7 +4,6 @@ import { ScrollContext } from "../contexts/scroll";
 import styled from "styled-components";
 import { Container } from "react-bootstrap";
 
-import { Layout } from "../components/layout";
 import { useQuery } from "@apollo/client";
 import { ArticleDetectContext } from "../components/ArticleDetectController";
 import ArticleDetect from "../components/ArticleDetect";
@@ -32,11 +31,9 @@ function ArticleBody() {
 const App: React.FC<any> = (): any => {
   return (
     <>
-      <Layout>
-        <BodyContainer id="container">
-          <ArticleBody />
-        </BodyContainer>
-      </Layout>
+      <BodyContainer id="container">
+        <ArticleBody />
+      </BodyContainer>
     </>
   );
 };

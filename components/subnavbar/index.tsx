@@ -7,6 +7,7 @@ import { ScrollContext } from "../../contexts/scroll";
 import { Navigation } from "./Navigation";
 
 import { Navbar, Nav, NavLink, NavDropdown } from "react-bootstrap";
+import { ArticleDetectContext } from "../ArticleDetectController";
 
 const SubNavbarContainer = styled(Navbar)`
   background-color: transparent !important;
@@ -37,18 +38,25 @@ interface SubNavBarProp {
 
 export const SubNavBar: React.FC<SubNavBarProp> = ({ transition }): any => {
   const [selectedKey, setSelectedKey] = useState("");
+  const { title } = useContext(ArticleDetectContext);
 
   const handleSelect = (eventKey: string) => {
     setSelectedKey(eventKey);
   };
 
   return (
-    <div className={`${style.subNavbarContainer} ${transition}`}>
+    <div
+      className={`${style.subNavbarContainer} ${title ? transition : "down"}`}
+    >
       <SubNavbarContainer
         bg="light"
         variant="light"
         className={`${style.subNavbarNavContainer} ${
-          transition === "down" ? "showNav" : "dontShowNav"
+          title
+            ? transition === "down"
+              ? "showNav"
+              : "dontShowNav"
+            : "showNav"
         } }`}
       >
         <Nav
@@ -75,8 +83,14 @@ export const SubNavBar: React.FC<SubNavBarProp> = ({ transition }): any => {
       </SubNavbarContainer>
 
       <Navigation
-        classNameProp={transition}
-        showNav={`${transition === "down" ? "dontShowNav" : "showNav"}`}
+        classNameProp={title ? transition : "down"}
+        showNav={`${
+          title
+            ? transition === "down"
+              ? "dontShowNav"
+              : "showNav"
+            : "dontShowNav"
+        }`}
       />
     </div>
   );

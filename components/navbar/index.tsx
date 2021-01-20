@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import style from "./navbar.module.scss";
 import styled from "styled-components";
 
 import { Navbar, Nav, NavLink } from "react-bootstrap";
+import { ArticleDetectContext } from "../ArticleDetectController";
 
 const NavbarContainer = styled(Navbar)`
   background-color: transparent !important;
@@ -18,8 +19,12 @@ interface NavBarProps {
 }
 
 export const NavBar: React.FC<NavBarProps> = ({ classNameProp }): any => {
+  const { title } = useContext(ArticleDetectContext);
+
   return (
-    <div className={`${style.navbarContainer} ${classNameProp}`}>
+    <div
+      className={`${style.navbarContainer} ${title ? classNameProp : "show"}`}
+    >
       <NavbarContainer
         expand="sm"
         bg="light"
